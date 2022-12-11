@@ -1,9 +1,15 @@
 import Head from "next/head";
 import AppLayout from "../componentes/AppLayout";
 import Button from "../componentes/Button";
+import GitHub from "../componentes/Icons/Github";
+import { loginWithGithub } from "../firebase/client";
 import { colors } from "../styles/theme";
 
 export default function Home() {
+	const handleClick = () => {
+		loginWithGithub().then((user) => console.log(user));
+	};
+
 	return (
 		<>
 			<Head>
@@ -20,7 +26,10 @@ export default function Home() {
 					<img src='/vercel.svg' alt='logo app' />
 					<h1>Devter</h1>
 					<h2> Talk about development with developers 😎</h2>
-					<Button>Login with GitHub</Button>
+					<Button onClick={handleClick}>
+						<GitHub fill='#fff' width={24} height={24} /> Login with
+						GitHub
+					</Button>
 				</section>
 			</AppLayout>
 
